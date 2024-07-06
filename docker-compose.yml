@@ -1,0 +1,10 @@
+services:
+  app:
+    image: gradle:jdk17
+    volumes:
+      - .:/app
+    ports:
+      - 8080:8080
+    working_dir: /app
+    entrypoint: gradle --no-daemon bootRun
+
