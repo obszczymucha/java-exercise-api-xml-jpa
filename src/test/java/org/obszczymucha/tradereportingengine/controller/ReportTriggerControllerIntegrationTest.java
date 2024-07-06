@@ -9,10 +9,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import static org.hamcrest.Matchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class GreetingControllerIntegrationTest {
+public class ReportTriggerControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -20,6 +21,6 @@ public class GreetingControllerIntegrationTest {
     public void reportShouldReturnDummyMessage() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/report"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Implement me!"));
+                .andExpect(jsonPath("$[*].sellerParty", hasItem("EMU_BANK")));
     }
 }

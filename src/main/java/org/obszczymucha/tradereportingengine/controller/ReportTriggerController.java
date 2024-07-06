@@ -1,6 +1,9 @@
 package org.obszczymucha.tradereportingengine.controller;
 
-import org.obszczymucha.tradereportingengine.model.ReportEntry;
+import java.io.IOException;
+import java.util.List;
+
+import org.obszczymucha.tradereportingengine.model.TradeData;
 import org.obszczymucha.tradereportingengine.service.ReportingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +19,7 @@ public class ReportTriggerController {
     }
 
     @GetMapping("/report")
-    public ReportEntry triggerReport() {
-        return new ReportEntry(service.report());
+    public List<TradeData> triggerReport() throws IOException {
+        return service.report();
     }
 }
