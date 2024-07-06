@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.obszczymucha.tradereportingengine.model.TradeData;
+import org.obszczymucha.tradereportingengine.service.model.TradeData;
 import org.obszczymucha.tradereportingengine.service.xmlparser.XmlParser;
 import org.springframework.core.io.DefaultResourceLoader;
 

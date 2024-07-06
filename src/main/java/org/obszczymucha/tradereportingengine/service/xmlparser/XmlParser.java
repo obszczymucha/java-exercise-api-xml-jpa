@@ -8,7 +8,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import org.obszczymucha.tradereportingengine.model.TradeData;
+import org.obszczymucha.tradereportingengine.service.model.TradeData;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 
