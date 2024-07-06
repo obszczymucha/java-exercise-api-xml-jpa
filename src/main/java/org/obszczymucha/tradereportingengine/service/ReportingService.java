@@ -17,8 +17,8 @@ public class ReportingService implements CommandLineRunner {
     private final QueryingService queryingService;
 
     @Autowired
-    public ReportingService(final ParsingService parsingService, PersistenceService persistenceService,
-            QueryingService queryingService) {
+    public ReportingService(final ParsingService parsingService, final PersistenceService persistenceService,
+            final QueryingService queryingService) {
         this.parsingService = parsingService;
         this.persistenceService = persistenceService;
         this.queryingService = queryingService;

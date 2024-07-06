@@ -29,15 +29,12 @@ public class XmlParser {
             val builder = factory.newDocumentBuilder();
             val document = builder.parse(inputStream);
 
-            val tradeData = new TradeData();
-
-            tradeData.setBuyerParty(parseField(document, "//buyerPartyReference/@href"));
-            tradeData.setSellerParty(parseField(document, "//sellerPartyReference/@href"));
-            tradeData.setPremiumAmount(parseField(document, "//paymentAmount/amount"));
-            tradeData.setPremiumCurrency(parseField(document, "//paymentAmount/currency"));
-
-            return tradeData;
-
+            return TradeData.builder()
+                    .buyerParty(parseField(document, "//buyerPartyReference/@href"))
+                    .sellerParty(parseField(document, "//sellerPartyReference/@href"))
+                    .premiumAmount(parseField(document, "//paymentAmount/amount"))
+                    .premiumCurrency(parseField(document, "//paymentAmount/currency"))
+                    .build();
         } catch (Exception e) {
             throw new XmlParsingException(e);
         }
