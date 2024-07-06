@@ -9,12 +9,12 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.obszczymucha.tradereportingengine.service.model.TradeData;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 
 import lombok.val;
 
-@Service
+@Component
 public class XmlParser {
     private final XPath xpath;
 

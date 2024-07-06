@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
+import org.obszczymucha.tradereportingengine.service.utils.ResourceFileLister;
 import org.springframework.core.io.DefaultResourceLoader;
 
 import lombok.val;

@@ -1,4 +1,4 @@
-package org.obszczymucha.tradereportingengine.service;
+package org.obszczymucha.tradereportingengine.service.utils;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import lombok.val;
 
-@Service
+@Component
 public class ResourceFileLister {
     private final ResourceLoader loader;
 

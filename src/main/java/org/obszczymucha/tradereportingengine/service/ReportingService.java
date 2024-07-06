@@ -4,33 +4,34 @@ import java.io.IOException;
 import java.util.List;
 
 import org.obszczymucha.tradereportingengine.service.model.TradeData;
-import org.obszczymucha.tradereportingengine.service.xmlparser.XmlParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import lombok.val;
+
 @Service
-public class ReportingService {
-    private static final String DATA_DIR = "data";
-    private final XmlParser xmlParser;
-    private final ResourceFileLister resourceFileLister;
+public class ReportingService implements CommandLineRunner {
+    private final ParsingService parsingService;
+    private final PersistenceService persistenceService;
+    private final QueryingService queryingService;
 
     @Autowired
-    public ReportingService(final XmlParser xmlParser, final ResourceFileLister resourceFileLister) {
-        this.xmlParser = xmlParser;
-        this.resourceFileLister = resourceFileLister;
+    public ReportingService(final ParsingService parsingService, PersistenceService persistenceService,
+            QueryingService queryingService) {
+        this.parsingService = parsingService;
+        this.persistenceService = persistenceService;
+        this.queryingService = queryingService;
+    }
+
+    public void run(final String... args) throws Exception {
+        val trades = parsingService.parse();
+        val entities = trades.stream().map(trade -> TradeData.toEntity(trade)).toList();
+        persistenceService.save(entities);
     }
 
     public List<TradeData> report() throws IOException {
-        return resourceFileLister.listFiles(DATA_DIR).stream()
-                .map(resource -> {
-                    try {
-                        return resource.getInputStream();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        return null;
-                    }
-                })
-                .map(xmlParser::parse)
-                .toList();
+        val results = queryingService.query();
+        return results.stream().map(entity -> TradeData.fromEntity(entity)).toList();
     }
 }
